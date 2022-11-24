@@ -1,5 +1,4 @@
 /*
- * Copyright (c) CISIAD, UNED, Spain,  2019. Licensed under the GPLv3 licence
  * Unless required by applicable law or agreed to in writing,
  * this code is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OF ANY KIND.
@@ -1787,9 +1786,10 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 	 * @param evidenceCase the evidence case with which the propagation must be
 	 *                     done.
 	 * @param caseNumber   number of this evidence case.
+	 * esto es como inferencia
 	 */
-	public boolean doPropagation(EvidenceCase evidenceCase, int caseNumber) {
-		Map<Variable, TablePotential> individualProbabilities = null;
+	public boolean doPropagation(EvidenceCase evidenceCase, int caseNumber) { //Evidencia que vamos a utilizar para la inferencia, el segundo solo tiene sentido al usar la interfaz de usuario
+		Map<Variable, TablePotential> individualProbabilities = null; //definimos variable para guardar las probabilidades que dan de resultado en procesos de inferencia
 		boolean propagationSucceded = false;
 		try {
 			long start = System.currentTimeMillis();
@@ -1800,11 +1800,11 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 
 				calculateMinAndMaxUtilityRanges();
 				// individualProbabilities = inferenceAlgorithm.getProbsAndUtilities ();
-				Propagation vePosteriorValues = new VEPropagation(probNet);
-				vePosteriorValues.setVariablesOfInterest(probNet.getVariables());
-				vePosteriorValues.setPreResolutionEvidence(preResolutionEvidence);
-				vePosteriorValues.setPostResolutionEvidence(evidenceCase);
-				individualProbabilities = vePosteriorValues.getPosteriorValues();
+				Propagation vePosteriorValues = new VEPropagation(probNet); //Creamos una instancia del algoritmo de alineación de variables, le pasas una variale que identifica la red bayesiana cargada
+				vePosteriorValues.setVariablesOfInterest(probNet.getVariables()); //Variables de interes son las variables sobre las que queremos calcular su probabilidad
+				vePosteriorValues.setPreResolutionEvidence(preResolutionEvidence); //segun que tipo de situaciones es necesaria invocarla
+				vePosteriorValues.setPostResolutionEvidence(evidenceCase); //Le pasamos la evidencia que tenemos que utilizar
+				individualProbabilities = vePosteriorValues.getPosteriorValues(); //realizamos el calculo 
 			} catch (OutOfMemoryError e) {
 				if (!approximateInferenceWarningGiven) {
 					JOptionPane.showMessageDialog(Utilities.getOwner(this),
