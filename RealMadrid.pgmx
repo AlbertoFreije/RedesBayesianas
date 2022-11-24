@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProbModelXML formatVersion="0.2.0">
+  <ProbNet type="BayesianNetwork">
+    <Comment showWhenOpeningNetwork="false"><![CDATA[<<Pulse dos veces para incluir/modificar comentario>>]]></Comment>
+    <DecisionCriteria>
+      <Criterion name="---" unit="---" />
+    </DecisionCriteria>
+    <Properties />
+    <Variables>
+      <Variable name="Sexo nacimiento?" type="finiteStates" role="chance">
+        <Coordinates x="816" y="83" />
+        <States>
+          <State name="Mujer" />
+          <State name="Hombre" />
+        </States>
+      </Variable>
+      <Variable name="Jugar al futbol" type="finiteStates" role="chance">
+        <Coordinates x="816" y="243" />
+        <States>
+          <State name="No" />
+          <State name="Si - Mujer" />
+          <State name="Si - Hombre" />
+        </States>
+      </Variable>
+      <Variable name="Jugar en Primera" type="finiteStates" role="chance">
+        <Coordinates x="616" y="587" />
+        <States>
+          <State name="No" />
+          <State name="Si - Mujer" />
+          <State name="Si - Hombre" />
+        </States>
+      </Variable>
+      <Variable name="Seleccion" type="finiteStates" role="chance">
+        <Coordinates x="1025" y="587" />
+        <States>
+          <State name="No" />
+          <State name="Si - Mujer" />
+          <State name="Si - Hombre" />
+        </States>
+      </Variable>
+      <Variable name="Jugador/a profesional" type="finiteStates" role="chance">
+        <Coordinates x="814" y="432" />
+        <States>
+          <State name="No" />
+          <State name="Si - hombre" />
+          <State name="Si- Mujer" />
+        </States>
+      </Variable>
+      <Variable name="Jugar Real Madrid" type="finiteStates" role="chance">
+        <Coordinates x="796" y="766" />
+        <Properties>
+          <Property name="Relevance" value="7.0" />
+        </Properties>
+        <States>
+          <State name="No" />
+          <State name="Si- Mujer" />
+          <State name="Si- Hombre" />
+        </States>
+      </Variable>
+      <Variable name="Lesion Grave" type="finiteStates" role="chance">
+        <Coordinates x="1045" y="308" />
+        <States>
+          <State name="No" />
+          <State name="Si" />
+        </States>
+      </Variable>
+    </Variables>
+    <Links>
+      <Link directed="true">
+        <Variable name="Sexo nacimiento?" />
+        <Variable name="Jugar al futbol" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Jugar al futbol" />
+        <Variable name="Jugador/a profesional" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Jugar en Primera" />
+        <Variable name="Jugar Real Madrid" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Seleccion" />
+        <Variable name="Jugar Real Madrid" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Jugador/a profesional" />
+        <Variable name="Jugar en Primera" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Jugador/a profesional" />
+        <Variable name="Seleccion" />
+      </Link>
+      <Link directed="true">
+        <Variable name="Lesion Grave" />
+        <Variable name="Jugador/a profesional" />
+      </Link>
+    </Links>
+    <Potentials>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Sexo nacimiento?" />
+        </Variables>
+        <Values>0.48 0.52</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Jugar al futbol" />
+          <Variable name="Sexo nacimiento?" />
+        </Variables>
+        <Values>0.81209 0.18791 0.0 0.77619 0.0 0.22381</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Jugar en Primera" />
+          <Variable name="Jugador/a profesional" />
+        </Variables>
+        <Values>1.0 0.0 0.0 0.7566 0.0 0.2434 0.0 1.0 0.0</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Seleccion" />
+          <Variable name="Jugador/a profesional" />
+        </Variables>
+        <Values>1.0 0.0 0.0 0.9856 0.0 0.0144 0.933 0.067 0.0</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Jugador/a profesional" />
+          <Variable name="Jugar al futbol" />
+          <Variable name="Lesion Grave" />
+        </Variables>
+        <Values>1.0 0.0 0.0 0.9524 0.0 0.0476 0.9785 0.0215 0.0 1.0 0.0 0.0 0.9787 0.0 0.0213 0.9958 0.0042 0.0</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Jugar Real Madrid" />
+          <Variable name="Jugar en Primera" />
+          <Variable name="Seleccion" />
+        </Variables>
+        <Values>1.0 0.0 0.0 0.9531 0.0469 0.0 0.9962 0.0 0.0038 1.0 0.0 0.0 0.657 0.343 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 0.9231 0.0 0.0769</Values>
+      </Potential>
+      <Potential type="Table" role="conditionalProbability">
+        <Variables>
+          <Variable name="Lesion Grave" />
+        </Variables>
+        <Values>0.952 0.048</Values>
+      </Potential>
+    </Potentials>
+  </ProbNet>
+  <InferenceOptions>
+    <MulticriteriaOptions>
+      <SelectedAnalysisType>UNICRITERION</SelectedAnalysisType>
+      <Unicriterion>
+        <Scales>
+          <Scale Criterion="---" Value="1.0" />
+        </Scales>
+      </Unicriterion>
+      <CostEffectiveness>
+        <Scales>
+          <Scale Criterion="---" Value="1.0" />
+        </Scales>
+        <CE_Criteria>
+          <CE_Criterion Criterion="---" Value="Cost" />
+        </CE_Criteria>
+      </CostEffectiveness>
+    </MulticriteriaOptions>
+  </InferenceOptions>
+</ProbModelXML>
